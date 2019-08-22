@@ -1,7 +1,12 @@
 package com.xkcoding.log.aop.controller;
 
+import com.xkcoding.log.aop.aspectj.AopLog;
+
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.StrUtil;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @modified: yangkai.shen
  */
 @RestController
+@Slf4j
 public class TestController {
 
+    @Autowired
+    private AopLog aopLog;
 	/**
 	 * 测试方法
 	 *
@@ -29,6 +37,8 @@ public class TestController {
 	 */
 	@GetMapping("/test")
 	public Dict test(String who) {
+	    log.info("test方法");
+        aopLog.log();
 		return Dict.create().set("who", StrUtil.isBlank(who) ? "me" : who);
 	}
 

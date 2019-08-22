@@ -38,7 +38,7 @@ public class AopLog {
 	 */
 	@Pointcut("execution(public * com.xkcoding.log.aop.controller.*Controller.*(..))")
 	public void log() {
-
+        log.info("log方法");
 	}
 
 	/**
@@ -48,6 +48,7 @@ public class AopLog {
 	 */
 	@Before("log()")
 	public void beforeLog(JoinPoint point) {
+        log.info("before方法");
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
 		HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
@@ -62,15 +63,27 @@ public class AopLog {
 		request.setAttribute(START_TIME, start);
 	}
 
-	/**
-	 * 环绕操作
-	 *
-	 * @param point 切入点
-	 * @return 原方法返回值
-	 * @throws Throwable 异常信息
-	 */
+    /**
+     * 后置方法
+     *
+     */
+    @After("log()")
+    public void afterLog(){
+	    log.info("after方法");
+    }
+
+
+
+    /**
+     * 环绕操作
+     *
+     * @param point 切入点
+     * @return 原方法返回值
+     * @throws Throwable 异常信息
+     */
 	@Around("log()")
 	public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
+        log.info("around方法");
 		Object result = point.proceed();
 		log.info("【返回值】：{}", JSONUtil.toJsonStr(result));
 		return result;
@@ -81,6 +94,7 @@ public class AopLog {
 	 */
 	@AfterReturning("log()")
 	public void afterReturning() {
+	    log.info("afterReturning");
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
 
