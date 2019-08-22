@@ -1,0 +1,8 @@
+application:
+  name: test环境 @artifactId@
+  version: test环境 @version@
+developer:
+  name: test环境 xkcoding
+  website: test环境 http://xkcoding.com
+  qq: test环境 237497819
+  phone-number: test环境 17326075631
