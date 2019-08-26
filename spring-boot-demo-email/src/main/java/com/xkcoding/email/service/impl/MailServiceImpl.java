@@ -101,7 +101,7 @@ public class MailServiceImpl implements MailService {
             helper.setCc(cc);
         }
         FileSystemResource file = new FileSystemResource(new File(filePath));
-        String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+        String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
         helper.addAttachment(fileName, file);
 
         mailSender.send(message);
@@ -134,5 +134,13 @@ public class MailServiceImpl implements MailService {
         helper.addInline(rscId, res);
 
         mailSender.send(message);
+    }
+
+    public static void main(String[] args) {
+        String filePath ="static\\xkcoding.png";
+        FileSystemResource file = new FileSystemResource(new File(filePath));
+        String fileName = filePath.substring(filePath.lastIndexOf(File.separator)+1);
+        System.out.println(fileName);
+        System.out.println("ok");
     }
 }
