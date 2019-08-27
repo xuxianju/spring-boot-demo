@@ -2,6 +2,8 @@ package com.xkcoding.session.controller;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
+import lombok.extern.slf4j.Slf4j;
+
 import com.xkcoding.session.constants.Consts;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpSession;
  * @modified: yangkai.shen
  */
 @Controller
+@Slf4j
 @RequestMapping("/page")
 public class PageController {
     /**
@@ -37,6 +40,7 @@ public class PageController {
         ModelAndView mv = new ModelAndView();
 
         String token = (String) request.getSession().getAttribute(Consts.SESSION_KEY);
+        log.info("create token:[{}]",token);
         mv.setViewName("index");
         mv.addObject("token", token);
         return mv;
