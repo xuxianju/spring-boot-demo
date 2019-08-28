@@ -10,7 +10,7 @@ spring:
     version: 1.0.0-SNAPSHOT
     contact:
       name: Yangkai.Shen
-      email: 237497819@qq.com
+      email: 77930740@qq.com
       url: http://xkcoding.com
     # swagger扫描的基础包，默认：全扫描
     # base-package:
@@ -20,7 +20,7 @@ spring:
     # exclude-path:
     security:
       # 是否启用 swagger 登录验证
-      filter-plugin: true
+      filter-plugin: false
       username: xkcoding
       password: 123456
     global-response-messages:
